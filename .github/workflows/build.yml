@@ -3,8 +3,8 @@ name: Create and publish a Docker image to ghcr
 on: ["push"]
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: quay.io
+  IMAGE_NAME: msawood/gosmee
 
 jobs:
   build-and-push-image:
@@ -30,8 +30,8 @@ jobs:
         uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
